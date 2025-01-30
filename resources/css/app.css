@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+@font-face {
+    font-family: "Goldman";
+    src: url("/fonts/Goldman-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Orbitron";
+    src: url("/fonts/Orbitron-VariableFont_wght.ttf") format("truetype");
+}
