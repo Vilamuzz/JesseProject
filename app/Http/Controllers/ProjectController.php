@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
@@ -11,6 +11,12 @@ use Inertia\Inertia;
 
 class ProjectController extends Controller
 {
+    public function index()
+    {
+        return Inertia::render('Admin/Dashboard', [
+            'projects' => Project::with('tags')->latest()->get()
+        ]);
+    }
     public function create()
     {
         return Inertia::render('Admin/Projects/Create', [
@@ -137,5 +143,26 @@ class ProjectController extends Controller
         });
 
         return redirect()->route('admin.dashboard');
+    }
+
+    public function ListWorks()
+    {
+        return Inertia::render('ListWorks', [
+            'projects' => Project::with('tags')->latest()->get()
+        ]);
+    }
+
+    public function show(Project $project)
+    {
+        return Inertia::render('Work', [
+            'project' => $project->load([
+                'tags',
+                'projectImages',
+                'additionalContents' => function ($query) {
+                    $query->orderBy('id', 'asc');
+                },
+                'additionalContents.images'
+            ])
+        ]);
     }
 }

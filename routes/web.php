@@ -3,8 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -16,6 +15,9 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/works', [ProjectController::class, 'ListWorks'])->name('works');
+Route::get('/works/{project}', [ProjectController::class, 'show'])->name('works.show');
+
 // Admin routes
 Route::middleware([
     'auth:sanctum',
@@ -23,7 +25,7 @@ Route::middleware([
     'verified',
     'admin'
 ])->group(function () {
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [ProjectController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
     Route::post('/admin/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
     Route::get('/admin/projects/{project}/edit', [ProjectController::class, 'edit'])->name('admin.projects.edit');
