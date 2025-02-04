@@ -78,10 +78,10 @@ defineProps({
                 </div>
 
                 <!-- Teks tetap berada di bawah -->
-                <p class="mt-4 text-center">{{ project.description }}</p>
+                <p class="mt-8 text-center">{{ project.description }}</p>
             </div>
 
-            <div v-if="project.project_images?.length" class="mb-12">
+            <div v-if="project.project_images?.length" class="my-12">
                 <div class="flex flex-col gap-4">
                     <div
                         v-for="image in project.project_images.slice(1)"
