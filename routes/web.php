@@ -15,6 +15,9 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/founder', function () {
+    return Inertia::render('Founder');
+})->name('founder');
 Route::get('/works', [ProjectController::class, 'ListWorks'])->name('works');
 Route::get('/works/{project}', [ProjectController::class, 'show'])->name('works.show');
 

@@ -20,22 +20,25 @@ export default {
                 orbitron: ['"Orbitron"', "sans-serif"],
             },
             keyframes: {
-                fadeInUp: {
-                    "0%": {
-                        opacity: "0",
-                        transform: "translateY(20px)",
+                "pulse-fade": {
+                    "0%, 100%": {
+                        opacity: "0.2",
+                        transform: "scale(0.95)",
                     },
-                    "100%": {
+                    "50%": {
                         opacity: "1",
-                        transform: "translateY(0)",
+                        transform: "scale(1)",
                     },
                 },
             },
             animation: {
-                "fade-up": "fadeInUp 0.8s ease-out forwards",
+                "pulse-fade": "pulse-fade 1.5s ease-in-out infinite",
+                "pulse-fade-delay-1":
+                    "pulse-fade 1.5s ease-in-out 0.5s infinite",
+                "pulse-fade-delay-2": "pulse-fade 1.5s ease-in-out 1s infinite",
             },
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [forms, typography, require("tailwindcss-animated")],
 };
